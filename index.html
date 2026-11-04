@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light only">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Short Film Teams</title>
+<style>
+:root{color-scheme:light;--bg:#f2f4f8;--card:#fff;--tx:#222;--mut:#6b7482;--azul:#0033a0;--verde:#3fb500;--line:#d5dae3;--tri:rgba(222,230,247,.35)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 -apple-system,Helvetica,Arial,sans-serif;padding:28px 20px 60px}
+h1{margin:0 0 4px;font-size:28px}
+.sub{color:var(--mut);margin-bottom:28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(620px,1fr));gap:36px 28px;max-width:1500px}
+@media (max-width:700px){.grid{grid-template-columns:1fr}}
+.corto{text-align:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 16px 12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.head{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.titulo{font-weight:800;font-size:22px;color:var(--azul);outline:none;background:rgba(255,255,255,.92);padding:4px 16px;border-radius:999px}
+.tog{border:1px solid var(--line);background:var(--card);color:var(--tx);border-radius:999px;padding:5px 14px;cursor:pointer;font-size:13px}
+.sec{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 auto 16px;max-width:560px}.desc{font-size:14.5px;font-weight:600;margin-bottom:10px;text-align:center}.links{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.links a{font-size:13px;color:var(--azul);border:1px solid var(--line);border-radius:999px;padding:4px 12px;text-decoration:none;background:var(--card)}.links a:hover{background:var(--bg)}
+.pir{position:relative;padding:18px 10px 14px}
+.pir:before{content:"";position:absolute;inset:0;background:var(--tri);clip-path:polygon(50% 0,100% 100%,0 100%);z-index:0}
+.row{position:relative;z-index:1;display:flex;justify-content:center;gap:12px;margin-bottom:12px}
+.al{width:230px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.al.top{border:2px solid var(--verde)}
+.num{font-size:13px;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.sel{width:100%;margin:6px 0 10px;padding:6px 4px;font:700 15px -apple-system,Helvetica,Arial,sans-serif;color:var(--tx);background:var(--card);border:1px solid var(--line);border-radius:8px}
+.nom{margin:6px 0 10px;min-height:26px;border-bottom:1px dashed var(--line);font-weight:700;font-size:17px;outline:none}
+.nom:empty:before{content:"Nombre";color:var(--mut);font-weight:400}
+.cr{cursor:pointer;font-size:14px;margin:5px 0;padding:6px 8px;border-radius:8px;background:var(--bg);line-height:1.25}
+.cr.open{background:var(--tri);font-weight:600}.info{font-size:13px;text-align:left;padding:2px 8px 8px;color:var(--tx)}
+</style>
+</head>
+<body>
+<h1>Short Film Teams</h1>
+<div class="sub">Click on each position for a brief explanation of what it involves.</div>
+<div class="grid" id="grid"></div>
+<script>
+const MUS="composer / musician / arranger / music audio engineer";
+const DIR=["audio producer / executive audio producer","supervising sound designer"];
+const REC=["foley recording audio engineer","ADR audio engineer and producer"];
+const EQ5=[DIR,["sound designer and editor","foley artist"],[MUS,"voice actor"],REC,["mixing and mastering engineer"]];
+const EQ4=[DIR,["sound designer and editor","foley artist","voice actor"],[MUS,"mixing and mastering engineer"],REC];
+const DESC={"audio producer / executive audio producer": "Runs the audio production: schedule, budget, team and communication with the filmmakers. The executive level makes the final decisions.", "supervising sound designer": "Defines how the short should sound and leads the sound design.", "composer / musician / arranger / music audio engineer": "Creates, arranges and performs the music, and records and cleans the music audio.", "sound designer and editor": "Creates the sound effects and ambiences and edits them in sync with the picture.", "foley artist": "Performs everyday sounds (footsteps, cloth, objects) in sync with the picture.", "voice actor": "Performs the voices of the characters.", "foley recording audio engineer": "Records the foley sessions in the studio.", "ADR audio engineer and producer": "Records and directs the voice sessions (ADR) in the studio and organizes the takes.", "mixing and mastering engineer": "Balances all sounds and music into the final mix and prepares the final master."};
+const NAMES=["Abril Carrillo Ramones", "Alejandro García Paz", "Alejandro Salinas Solís", "Aylín Reséndiz García", "Daniela Esquinca Caballero", "David Eguía Gutiérrez", "David Park", "Diego Barboza González", "Efraín Ornelas Licona", "Eloy Niederstadt", "Emiliano Velasco Rodríguez", "Emilio Veles Rodriguez", "Emily Pliego Zacarias", "Giulianna Schettino San Vicente", "Julian Diaz", "Luz Marina Madrid Rodrigues", "Lya Michelle Jaramillo Candaudap", "Mathis Ethan Liang Lin", "Mitchell Tonatiuh Pliego Pérez"];
+const B="https://experiencia21.tec.mx/courses/703617/files/";
+const cortos=[
+ {t:"The Rotten Mirror",c:"RM",img:"img/rm.jpg",n:5,a:303780530,s:[303780291,303780303]},
+ {t:"The Fox and the Crane",c:"FC",img:"img/fc.jpg",n:4,a:303780610,s:[303780313,303780338]},
+ {t:"Snuggle Spell",c:"SS",img:"img/ss.jpg",n:5,a:303780504,s:[303780348,303780364]},
+ {t:"Don't Feed the Pelican",c:"DFP",img:"img/dfp.jpg",n:5,a:303780565,s:[303780381,303780397]}
+];
+const ST=(()=>{try{return JSON.parse(localStorage.getItem("equipos_cortos")||"{}")}catch(e){return{}}})();
+function save(){try{localStorage.setItem("equipos_cortos",JSON.stringify(ST))}catch(e){}}
+const filas=n=>n===5?[1,2,2]:[1,3];
+function render(){
+  const g=document.getElementById("grid");g.innerHTML="";
+  cortos.forEach((c,ci)=>{
+    const n=c.n, eq=n===5?EQ5:EQ4;
+    const box=document.createElement("div");box.className="corto";
+    box.style.backgroundImage="linear-gradient(rgba(255,255,255,.40),rgba(255,255,255,.40)),url('"+encodeURI(c.img)+"')";box.style.backgroundSize="cover";box.style.backgroundPosition="center";
+    const head=document.createElement("div");head.className="head";
+    const t=document.createElement("div");t.className="titulo";t.contentEditable="true";t.textContent=ST["t"+ci]||c.t;
+    t.oninput=()=>{ST["t"+ci]=t.textContent;save()};
+    head.append(t);box.append(head);
+    const sec=document.createElement("div");sec.className="sec";
+    const dd=document.createElement("div");dd.className="desc";dd.textContent="To get an idea of what the short is like:";
+    const lk=document.createElement("div");lk.className="links";
+    const mk=(txt,href)=>{const x=document.createElement("a");x.textContent=txt;x.href=href;x.target="_blank";x.rel="noopener";return x};
+    lk.append(mk("Watch short",B+c.a+"?wrap=1"),mk("Visual style 1",B+c.s[0]+"?wrap=1"),mk("Visual style 2",B+c.s[1]+"?wrap=1"));
+    sec.append(dd,lk);box.append(sec);
+    const pir=document.createElement("div");pir.className="pir";
+    let k=0;
+    filas(n).forEach(cnt=>{
+      const r=document.createElement("div");r.className="row";
+      for(let j=0;j<cnt;j++){
+        const a=document.createElement("div");a.className="al"+(k===0?" top":"");
+        a.innerHTML='<div class="num">POSITION CODE: '+c.c+(k+1)+'</div>';
+        eq[k].forEach(x=>{const d=document.createElement("div");d.className="cr";d.textContent=x;const inf=document.createElement("div");inf.className="info";inf.textContent=DESC[x]||"";inf.hidden=true;d.onclick=()=>{const abrir=inf.hidden;document.querySelectorAll(".info").forEach(i=>i.hidden=true);document.querySelectorAll(".cr.open").forEach(c=>c.classList.remove("open"));if(abrir){inf.hidden=false;d.classList.add("open")}};a.append(d,inf)});
+        r.append(a);k++;
+      }
+      pir.append(r);
+    });
+    box.append(pir);g.append(box);
+  });
+}
+render();
+</script>
+</body>
+</html>
