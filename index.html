@@ -29,7 +29,7 @@ h1{margin:0 0 4px;font-size:28px}
 .nom:empty:before{content:"Nombre";color:var(--mut);font-weight:400}
 .cr{cursor:pointer;font-size:14px;margin:5px 0;padding:6px 8px;border-radius:8px;background:var(--bg);line-height:1.25}
 .cr.open{background:var(--tri);font-weight:600}.info{font-size:13px;text-align:left;padding:2px 8px 8px;color:var(--tx)}
-.asg{display:flex;align-items:center;gap:10px;justify-content:center;margin:6px 0 10px;font-weight:700;font-size:16px}.asg img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center top}
+.asg{display:flex;align-items:center;gap:10px;justify-content:center;margin:6px 0 10px;font-weight:700;font-size:16px}.ini{width:56px;height:56px;border-radius:50%;background:#dde6f7;color:var(--azul);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:19px}.asg img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center top}
 </style>
 </head>
 <body>
@@ -79,7 +79,7 @@ function render(){
         const a=document.createElement("div");a.className="al"+(k===0?" top":"");
         const asg=ASSIGN[c.c+(k+1)];
         a.innerHTML=asg?'':'<div class="num">POSITION CODE: '+c.c+(k+1)+'</div>';
-        if(asg){const w=document.createElement("div");w.className="asg";if(asg.photo){const im=document.createElement("img");im.src=asg.photo;im.alt=asg.name;w.append(im)}const nm=document.createElement("div");nm.textContent=asg.name;w.append(nm);a.append(w)}
+        if(asg){const w=document.createElement("div");w.className="asg";if(asg.photo){const im=document.createElement("img");im.src=asg.photo;im.alt=asg.name;w.append(im)}else{const ini=document.createElement("div");ini.className="ini";ini.textContent=asg.name.split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase();w.append(ini)}const nm=document.createElement("div");nm.textContent=asg.name;w.append(nm);a.append(w)}
         eq[k].forEach(x=>{const d=document.createElement("div");d.className="cr";d.textContent=x;const inf=document.createElement("div");inf.className="info";inf.textContent=DESC[x]||"";inf.hidden=true;d.onclick=()=>{const abrir=inf.hidden;document.querySelectorAll(".info").forEach(i=>i.hidden=true);document.querySelectorAll(".cr.open").forEach(c=>c.classList.remove("open"));if(abrir){inf.hidden=false;d.classList.add("open")}};a.append(d,inf)});
         r.append(a);k++;
       }
