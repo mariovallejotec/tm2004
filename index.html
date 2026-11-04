@@ -77,8 +77,8 @@ function render(){
       const r=document.createElement("div");r.className="row";
       for(let j=0;j<cnt;j++){
         const a=document.createElement("div");a.className="al"+(k===0?" top":"");
-        a.innerHTML='<div class="num">POSITION CODE: '+c.c+(k+1)+'</div>';
         const asg=ASSIGN[c.c+(k+1)];
+        a.innerHTML=asg?'':'<div class="num">POSITION CODE: '+c.c+(k+1)+'</div>';
         if(asg){const w=document.createElement("div");w.className="asg";if(asg.photo){const im=document.createElement("img");im.src=asg.photo;im.alt=asg.name;w.append(im)}const nm=document.createElement("div");nm.textContent=asg.name;w.append(nm);a.append(w)}
         eq[k].forEach(x=>{const d=document.createElement("div");d.className="cr";d.textContent=x;const inf=document.createElement("div");inf.className="info";inf.textContent=DESC[x]||"";inf.hidden=true;d.onclick=()=>{const abrir=inf.hidden;document.querySelectorAll(".info").forEach(i=>i.hidden=true);document.querySelectorAll(".cr.open").forEach(c=>c.classList.remove("open"));if(abrir){inf.hidden=false;d.classList.add("open")}};a.append(d,inf)});
         r.append(a);k++;
