@@ -29,6 +29,7 @@ h1{margin:0 0 4px;font-size:28px}
 .nom:empty:before{content:"Nombre";color:var(--mut);font-weight:400}
 .cr{cursor:pointer;font-size:14px;margin:5px 0;padding:6px 8px;border-radius:8px;background:var(--bg);line-height:1.25}
 .cr.open{background:var(--tri);font-weight:600}.info{font-size:13px;text-align:left;padding:2px 8px 8px;color:var(--tx)}
+.asg{display:flex;align-items:center;gap:10px;justify-content:center;margin:6px 0 10px;font-weight:700;font-size:16px}.asg img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center top}
 </style>
 </head>
 <body>
@@ -43,6 +44,7 @@ const EQ5=[DIR,["sound designer and editor","foley artist"],[MUS,"voice actor"],
 const EQ4=[DIR,["sound designer and editor","foley artist","voice actor"],[MUS,"mixing and mastering engineer"],REC];
 const DESC={"audio producer / executive audio producer": "Runs the audio production: schedule, budget, team and communication with the filmmakers. The executive level makes the final decisions.", "supervising sound designer": "Defines how the short should sound and leads the sound design.", "composer / musician / arranger / music audio engineer": "Creates, arranges and performs the music, and records and cleans the music audio.", "sound designer and editor": "Creates the sound effects and ambiences and edits them in sync with the picture.", "foley artist": "Performs everyday sounds (footsteps, cloth, objects) in sync with the picture.", "voice actor": "Performs the voices of the characters.", "foley recording audio engineer": "Records the foley sessions in the studio.", "ADR audio engineer and producer": "Records and directs the voice sessions (ADR) in the studio and organizes the takes.", "mixing and mastering engineer": "Balances all sounds and music into the final mix and prepares the final master."};
 const NAMES=["Abril Carrillo Ramones", "Alejandro García Paz", "Alejandro Salinas Solís", "Aylín Reséndiz García", "Daniela Esquinca Caballero", "David Eguía Gutiérrez", "David Park", "Diego Barboza González", "Efraín Ornelas Licona", "Eloy Niederstadt", "Emiliano Velasco Rodríguez", "Emilio Veles Rodriguez", "Emily Pliego Zacarias", "Giulianna Schettino San Vicente", "Julian Diaz", "Luz Marina Madrid Rodrigues", "Lya Michelle Jaramillo Candaudap", "Mathis Ethan Liang Lin", "Mitchell Tonatiuh Pliego Pérez"];
+const ASSIGN={RM1:{name:"Abril Carrillo"},FC1:{name:"Daniela Esquinca",photo:"img/daniela.jpg"}};
 const B="https://experiencia21.tec.mx/courses/703617/files/";
 const cortos=[
  {t:"The Rotten Mirror",c:"RM",img:"img/rm.jpg",n:5,a:303780530,s:[303780291,303780303]},
@@ -76,6 +78,8 @@ function render(){
       for(let j=0;j<cnt;j++){
         const a=document.createElement("div");a.className="al"+(k===0?" top":"");
         a.innerHTML='<div class="num">POSITION CODE: '+c.c+(k+1)+'</div>';
+        const asg=ASSIGN[c.c+(k+1)];
+        if(asg){const w=document.createElement("div");w.className="asg";if(asg.photo){const im=document.createElement("img");im.src=asg.photo;im.alt=asg.name;w.append(im)}const nm=document.createElement("div");nm.textContent=asg.name;w.append(nm);a.append(w)}
         eq[k].forEach(x=>{const d=document.createElement("div");d.className="cr";d.textContent=x;const inf=document.createElement("div");inf.className="info";inf.textContent=DESC[x]||"";inf.hidden=true;d.onclick=()=>{const abrir=inf.hidden;document.querySelectorAll(".info").forEach(i=>i.hidden=true);document.querySelectorAll(".cr.open").forEach(c=>c.classList.remove("open"));if(abrir){inf.hidden=false;d.classList.add("open")}};a.append(d,inf)});
         r.append(a);k++;
       }
