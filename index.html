@@ -89,7 +89,7 @@ function render(){
       }
       pir.append(r);
     });
-    if(ROW[c.c]){const r=document.createElement("div");r.className="row";const a=document.createElement("div");a.className="al";a.style.width="480px";a.style.maxWidth="100%";a.innerHTML='<div style="display:flex;justify-content:center;gap:24px;margin-bottom:8px">'+ROW[c.c].map(p=>'<div class="asg"><div class="ini">'+p[0].split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase()+'</div><div>'+p[0]+'</div></div>').join("")+'</div><div class="cr">'+ROW[c.c][0][1]+'</div>';r.append(a);pir.append(r)}
+    if(ROW[c.c]){const r=document.createElement("div");r.className="row";const a=document.createElement("div");a.className="al";a.innerHTML=ROW[c.c].map(p=>'<div class="asg"><div class="ini">'+p[0].split(" ").map(x=>x[0]).join("").slice(0,2).toUpperCase()+'</div><div>'+p[0]+'</div></div>').join("")+'<div class="cr">'+ROW[c.c][0][1]+'</div>';r.append(a);pir.append(r)}
     box.append(pir);
     g.append(box);
   });
