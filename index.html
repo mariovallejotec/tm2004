@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="color-scheme" content="light only">
+<meta name="color-scheme" content="dark only">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Short Film Teams</title>
 <style>
-:root{color-scheme:light;--bg:#f2f4f8;--card:#fff;--tx:#222;--mut:#6b7482;--azul:#0033a0;--verde:#3fb500;--line:#d5dae3;--tri:rgba(222,230,247,.35)}
+:root{color-scheme:dark;--bg:#0f1218;--card:#1a1f29;--tx:#e8ebf0;--mut:#9aa4b2;--azul:#7fa8ff;--verde:#3fb500;--line:#2f3744;--tri:rgba(90,120,190,.18)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 -apple-system,Helvetica,Arial,sans-serif;padding:28px 20px 60px}
 h1{margin:0 0 4px;font-size:28px}
@@ -15,7 +15,7 @@ h1{margin:0 0 4px;font-size:28px}
 @media (max-width:700px){.grid{grid-template-columns:1fr}}
 .corto{text-align:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 16px 12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
 .head{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
-.titulo{font-weight:800;font-size:22px;color:var(--azul);outline:none;background:rgba(255,255,255,.92);padding:4px 16px;border-radius:999px}
+.titulo{font-weight:800;font-size:22px;color:var(--azul);outline:none;background:rgba(26,31,41,.92);padding:4px 16px;border-radius:999px}
 .tog{border:1px solid var(--line);background:var(--card);color:var(--tx);border-radius:999px;padding:5px 14px;cursor:pointer;font-size:13px}
 .sec{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 auto 16px;max-width:560px}.desc{font-size:14.5px;font-weight:600;margin-bottom:10px;text-align:center}.links{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.links a{font-size:13px;color:var(--azul);border:1px solid var(--line);border-radius:999px;padding:4px 12px;text-decoration:none;background:var(--card)}.links a:hover{background:var(--bg)}
 .pir{position:relative;padding:18px 10px 14px}
@@ -29,7 +29,7 @@ h1{margin:0 0 4px;font-size:28px}
 .nom:empty:before{content:"Nombre";color:var(--mut);font-weight:400}
 .cr{cursor:pointer;font-size:14px;margin:5px 0;padding:6px 8px;border-radius:8px;background:var(--bg);line-height:1.25}
 .cr.open{background:var(--tri);font-weight:600}.info{font-size:13px;text-align:left;padding:2px 8px 8px;color:var(--tx)}
-.asg{display:flex;align-items:center;gap:10px;justify-content:center;margin:6px 0 10px;font-weight:700;font-size:16px}.ini{width:56px;height:56px;border-radius:50%;background:#dde6f7;color:var(--azul);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:19px}.asg img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center top}
+.asg{display:flex;align-items:center;gap:10px;justify-content:center;margin:6px 0 10px;font-weight:700;font-size:16px}.ini{width:56px;height:56px;border-radius:50%;background:#2a3550;color:var(--azul);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:19px}.asg img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:center top}
 </style>
 </head>
 <body>
@@ -63,7 +63,7 @@ function render(){
   cortos.forEach((c,ci)=>{
     const n=c.n, eq=n===5?EQ5:EQ4;
     const box=document.createElement("div");box.className="corto";
-    box.style.backgroundImage="linear-gradient(rgba(255,255,255,.40),rgba(255,255,255,.40)),url('"+encodeURI(c.img)+"')";box.style.backgroundSize="cover";box.style.backgroundPosition="center";
+    box.style.backgroundImage="linear-gradient(rgba(15,18,24,.62),rgba(15,18,24,.62)),url('"+encodeURI(c.img)+"')";box.style.backgroundSize="cover";box.style.backgroundPosition="center";
     const head=document.createElement("div");head.className="head";
     const t=document.createElement("div");t.className="titulo";t.contentEditable="true";t.textContent=ST["t"+ci]||c.t;
     t.oninput=()=>{ST["t"+ci]=t.textContent;save()};
